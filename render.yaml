@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: movie-invite-app
+    env: ruby
+    plan: free
+    buildCommand: "bundle install"
+    startCommand: "bundle exec ruby app.rb -o 0.0.0.0 -p $PORT"
+    envVars:
+      - key: PAYSTACK_SECRET_KEY
+        value: "sk_live_6e9e04ef88b035dc41807d77190f9a43fb323721"
