@@ -4,8 +4,7 @@
     },
     "functions": {
       "api": {
-        "runtime": "vercel-node@1.10.0",
-        "handler": "app.js"
+        "runtime": "vercel-node@1.10.0"
       }
     }
   }
