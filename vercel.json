@@ -4,7 +4,7 @@
     },
     "functions": {
       "api/*.js": {
-        "runtime": "vercel-node@1.10.0"
+        "runtime": "vercel-node@20.1.1"
       },
       "api/app.rb": {
         "runtime": "ruby2.5"
