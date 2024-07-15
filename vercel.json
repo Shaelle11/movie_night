@@ -7,13 +7,7 @@
         "runtime": "vercel-node@1.10.0"
       },
       "api/app.rb": {
-        "runtime": "ruby2.5",
-        "routes": [
-          {
-            "src": "/.*",
-            "dest": "/api/app.rb"
-          }
-        ]
+        "runtime": "ruby2.5"
       }
     }
   }
