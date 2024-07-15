@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lady Whistledown's Invitation</title>
+    <link rel="stylesheet" href="/styles.css">
+    <style>
+        /* Custom Font */
+        @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
+        
+        body {
+            font-family: 'Great Vibes', cursive;
+            background-color: #fff; /* Set a background color for the whole page */
+            color: #333; /* Default text color */
+        }
+
+        .header img.inline-image {
+            width: 25%;
+            height: 25%;
+            margin: 0 10px;
+        }
+
+        .main-container {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding: 20px;
+        }
+
+        .invitation-container {
+            flex: 1;
+            padding: 20px;
+            border: 1px solid #000;
+            margin-bottom: 20px;
+            background-color: #fff; /* Adding a background color */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Adding a shadow for depth */
+        }
+
+        .invitation-container h1,
+        .invitation-container h3 {
+            color: #000;
+            font-weight: 900;
+            font-size: 24px;
+        }
+        .invitation-container p {
+            color: #000;
+            font-weight: 500;
+            font-size: 24px;
+        }
+
+        .actions-container {
+            flex: 0 0 30%;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .content {
+            margin-top: 20px;
+        }
+
+        .invitee {
+            margin-top: 20px;
+            padding: 20px;
+            border: 1px solid #000;
+            background-color: #fff; /* Adding a background color */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Adding a shadow for depth */
+        }
+
+        .invitee h1,
+        .invitee h3 {
+            color: #000;
+            font-weight: 900;
+            font-size: 24px;
+        }
+        .invitee p {
+            color: #000;
+            font-weight: 500;
+            font-size: 24px;
+        }
+
+        @media (max-width: 768px) {
+            .main-container {
+                flex-direction: column;
+            }
+
+            .actions-container {
+                flex: 1;
+            }
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.min.js"></script>
+</head>
+<body>
+<div class="main-container">
+    <section class="invitation-container" id="invitation">
+        <div class="header">
+            <img src="/images/Untitled-1.png" alt="Image Before Hello" class="inline-image">
+            <h1>Welcome</h1>
+            <img src="/images/UTURISTIC COMMUNITY.png" alt="Image After Hello" class="inline-image">
+        </div>
+        <div class="content" id="letter">
+            <h1>Dear <%= @title %> <%= @name %>,</h1>
+            <div id="letter-content">
+                <% if @role == "Admin" %>
+                    <p id="admin-text">
+                        It is with the utmost pleasure that I, Lady Whistledown alongside the Uturistic Team, extend to you a most exclusive invitation. On the eve of July 26th, you are cordially summoned to partake in an evening of merriment and entertainment at the faculty of Computing popularly known as FOC, at our esteemed Games and Movie Night. Your presence is not merely requested; it is essential to ensure the evening's success.
+
+                        We shall commence our revelries promptly, and you are entreated to bring your wit, charm, and competitive spirit. Our gathering will be a delightful mélange of games, where strategy and cunning shall reign, followed by a cinematic experience that promises to be both enchanting and exhilarating.
+
+                        The festivities shall span a period of three hours, within which time I am certain we shall create memories to be cherished.
+
+                        Pray, do not disappoint. Your attendance will undoubtedly elevate the evening to one of grandeur and delight.
+
+                        <h3>Yours most faithfully,</h3>
+                        <h3>Lady Whistledown and the Uturistic Community</h3>
+                    </p>
+                <% else %>
+                    <p id="invitee-text">
+                        Dear Esteemed Guests,
+
+                        It is with great pleasure that I, Lady Whistledown alongside the Uturistic Team, invite you to a night of splendid entertainment and conviviality. On the night of July 26th, you are cordially welcomed to join us for an evening that promises both thrilling games and an enchanting cinematic experience at the faculty of Computing popularly known as FOC.
+
+                        Our gathering will commence with a series of engaging games, designed to spark both laughter and friendly competition. Following this, we shall indulge in a movie that will captivate and delight all present.
+
+                        The festivities are set to last for three hours, providing ample opportunity for both amusement and the forging of delightful memories.
+
+                        Your presence would be most welcomed, and I assure you, it shall be an evening to remember.
+
+                        <h3>Yours most faithfully,</h3>
+                        <h3>Lady Whistledown and the Uturistic Community</h3>
+                    </p>
+                <% end %>
+            </div>
+        </div>
+    </section>
+    <section class="actions-container">
+        <div class="actions">
+            <button id="download-letter">Download Your Letter</button>
+            <div class="listening-party">
+                <h2>Would you like to be a part of our listening party?</h2>
+                <select id="listening-party-options">
+                    <option value="select">Select an option</option>
+                    <option value="add-yourself">Add Yourself</option>
+                    <option value="recommend-song">Recommend a Song</option>
+                </select>
+                <form id="recommend-song-form" style="display: none;">
+                    <label for="song-recommendation">Your Song Recommendation:</label>
+                    <input type="text" id="song-recommendation" name="song-recommendation">
+                    <button type="submit">Submit</button>
+                </form>
+                <div id="spotify-link" style="display: none;">
+                    <a href="https://open.spotify.com/playlist/YOUR_SPOTIFY_PLAYLIST_LINK" target="_blank">Join the Spotify Listening Party</a>
+                </div>
+            </div>
+            <div class="invite-others">
+                <h2>Invite One or Two Others:</h2>
+                <form id="invite-others-form">
+                    <label for="invite-name-1">Name of Invitee 1:</label>
+                    <input type="text" id="invite-name-1" name="invite-name-1">
+                    <label for="invite-name-2">Name of Invitee 2:</label>
+                    <input type="text" id="invite-name-2" name="invite-name-2">
+                    <button type="submit">Send Invites</button>
+                </form>
+                <div id="invitees"></div>
+            </div>
+            <div class="preorder-snacks">
+                <h2>Would you like to preorder snacks?</h2>
+                <form action="/preorder_snacks" method="get" id="preorder-snacks-form">
+                    <button type="submit">Preorder Snacks</button>
+                </form>
+            </div>
+        </div>
+    </section>
+</div>
+<script>
+    document.getElementById('listening-party-options').addEventListener('change', function() {
+        const form = document.getElementById('recommend-song-form');
+        const link = document.getElementById('spotify-link');
+        if (this.value === 'recommend-song') {
+            form.style.display = 'block';
+            link.style.display = 'none';
+        } else if (this.value === 'add-yourself') {
+            form.style.display = 'block';
+            link.style.display = 'block';
+        } else {
+            form.style.display = 'none';
+            link.style.display = 'none';
+        }
+    });
+
+    document.getElementById('download-letter').addEventListener('click', function() {
+        domtoimage.toBlob(document.getElementById('invitation'), { scale: 2 })
+            .then(function(blob) {
+                const link = document.createElement('a');
+                link.download = 'invitation_letter.png';
+                link.href = URL.createObjectURL(blob);
+                link.click();
+            })
+            .catch(function(error) {
+                console.error('oops, something went wrong!', error);
+            });
+    });
+
+    document.getElementById('invite-others-form').addEventListener('submit', function(event) {
+        event.preventDefault();
+        const inviteName1 = document.getElementById('invite-name-1').value;
+        const inviteName2 = document.getElementById('invite-name-2').value;
+        const inviteesDiv = document.getElementById('invitees');
+        inviteesDiv.innerHTML = `<p>Invited: ${inviteName1} and ${inviteName2}</p>`;
+        document.getElementById('invite-others-form').reset();
+    });
+
+    document.getElementById('recommend-song-form').addEventListener('submit', function(event) {
+        event.preventDefault();
+        const song = document.getElementById('song-recommendation').value;
+        const spotifyLink = document.getElementById('spotify-link');
+        spotifyLink.style.display = 'block';
+        spotifyLink.innerHTML = `<p>Your song recommendation: ${song}</p>`;
+        document.getElementById('recommend-song-form').reset();
+    });
+</script>
+</body>
+</html>

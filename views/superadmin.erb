@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Super Admin Dashboard</title>
+    <link rel="stylesheet" href="/styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Super Admin Dashboard</h1>
+        
+        <!-- Users and Actions -->
+        <h2>Users and Actions</h2>
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Title</th>
+                <th>Role</th>
+                <th>Actions</th>
+            </tr>
+            <% @users.each do |user| %>
+                <tr>
+                    <td><%= user[:name] %></td>
+                    <td><%= user[:title] %></td>
+                    <td><%= user[:role] %></td>
+                    <td>
+                        <ul>
+                            <% user[:actions].each do |action| %>
+                                <li><%= action[:action] %> at <%= action[:timestamp] %> - <%= action[:details] %></li>
+                            <% end %>
+                        </ul>
+                    </td>
+                </tr>
+            <% end %>
+        </table>
+        
+        <!-- Transactions -->
+        <h2>Transactions</h2>
+        <table>
+            <tr>
+                <th>Reference</th>
+                <th>Amount</th>
+                <th>Email</th>
+                <th>Status</th>
+                <th>Date</th>
+            </tr>
+            <% @transactions.each do |transaction| %>
+                <tr>
+                    <td><%= transaction["reference"] %></td>
+                    <td><%= transaction["amount"] %></td>
+                    <td><%= transaction["customer"]["email"] %></td>
+                    <td><%= transaction["status"] %></td>
+                    <td><%= transaction["transaction_date"] %></td>
+                </tr>
+            <% end %>
+        </table>
+    </div>
+</body>
+</html>

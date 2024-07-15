@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Preorder Snacks - Paystack Checkout</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <h1>Preorder Snacks</h1>
+  <p>Secure your snacks in advance for Lady Whistledown's movie/games night!</p>
+  <button id="paystack-button">Preorder Snacks for $10.00</button>
+
+  <script src="https://js.paystack.co/v1/inline.js"></script>
+  <script>
+    document.getElementById('paystack-button').addEventListener('click', function() {
+      var handler = PaystackPop.setup({
+        key: 'YOUR_PUBLIC_KEY', // Replace with your Paystack public key
+        email: '<%= @invitee[:name] %>@example.com',
+        amount: 1000 * 100, // Amount in kobo (e.g., 1000 NGN)
+        currency: 'USD',
+        ref: 'WHISTLEDOWN_' + Math.floor((Math.random() * 1000000000) + 1), // Generate a unique reference
+        callback: function(response) {
+          // Verify payment on the server
+          fetch('/verify-payment', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ reference: response.reference })
+          })
+          .then(function(response) {
+            return response.text();
+          })
+          .then(function(message) {
+            alert(message);
+          });
+        },
+        onClose: function() {
+          alert('Transaction was not completed, window closed.');
+        },
+      });
+
+      handler.openIframe();
+    });
+  </script>
+</body>
+</html>

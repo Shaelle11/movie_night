@@ -1,0 +1,86 @@
+<!-- preorder_snacks.erb -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preorder Snacks</title>
+    <link rel="stylesheet" href="/styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        input[type="text"], select, input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Preorder Snacks</h1>
+        <form action="/preorder" method="POST">
+            <label for="name">Your Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Your Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="snack-choice">Choose Snack:</label>
+            <select id="snack-choice" name="snack-choice" required>
+                <option value="Popcorn">Popcorn - ₦400</option>
+                <option value="Popcorn_with_drink">Popcorn with Drink - ₦800</option>
+                <option value="Snack">Snack - ₦1200</option>
+                <option value="Snack_PopCorn">Snack PopCorn - ₦1600</option>
+                <option value="Snack_Popcorn_drinks">Snack Popcorn Drinks - ₦2000</option>
+                <option value="Snack_Popcorn_drinks_pancakes">Snack Popcorn Drinks Pancakes - ₦2000</option>
+                <option value="Shawarma_and_drink">Shawarma and Drink - ₦2500</option>
+            </select>
+
+            <label for="quantity">Quantity:</label>
+            <input type="number" id="quantity" name="quantity" min="1" required>
+
+            <button type="submit">Preorder</button>
+        </form>
+
+        <% if @error %>
+            <p style="color: red;"><%= @error %></p>
+        <% end %>
+
+        <% if @amount %>
+            <p>Total Amount: ₦<%= @amount / 100.0 %></p>
+        <% end %>
+    </div>
+</body>
+</html>
