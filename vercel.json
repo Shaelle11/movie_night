@@ -1,11 +1,6 @@
 {
     "env": {
       "PAYSTACK_SECRET_KEY": "sk_live_6e9e04ef88b035dc41807d77190f9a43fb323721"
-    },
-    "functions": {
-      "api": {
-        "runtime": "vercel-node@1.10.0"
-      }
     }
   }
   
