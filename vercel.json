@@ -7,7 +7,7 @@
         "runtime": "vercel-node@3.2.2"
       },
       "api/app.rb": {
-        "runtime": "ruby2.5"
+        "runtime": "ruby@2.5"
       }
     }
   }

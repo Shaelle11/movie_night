@@ -6,5 +6,7 @@ gem 'activerecord', '~> 6.1' # Adjust version as needed
 gem 'sqlite3',' ~> 1.4'
 gem 'rake'
 gem 'rest-client'
+gem 'json'
 gem 'dotenv'
+gem 'puma' # Recommended for production
 
